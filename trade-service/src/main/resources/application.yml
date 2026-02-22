@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: trade-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/trading_db
+    username: juser
+    password: jpassword
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
