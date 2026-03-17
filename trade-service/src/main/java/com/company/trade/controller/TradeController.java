@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.company.trade.domain.Trade;
 import com.company.trade.dto.TradeRequest;
-import com.company.trade.service.PositionService;
 import com.company.trade.service.TradeService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,12 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class TradeController {
 
     private final TradeService tradeService;
-    private final PositionService positionService;
 
     @PostMapping
     public Trade createTrade(@RequestBody TradeRequest tradeRequest) {
-        Trade trade = tradeService.createTrade(tradeRequest);
-        positionService.updatePosition(trade);
-        return trade;
+        return tradeService.createTrade(tradeRequest);
     }
 }

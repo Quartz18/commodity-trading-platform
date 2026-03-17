@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 public class TradeService {
 
     private final TradeRepository tradeRepository;
+    private final PositionService positionService;
+    private final RiskService riskService;
 
     public Trade createTrade(TradeRequest request) {
         Trade trade = Trade.builder()
@@ -25,6 +27,9 @@ public class TradeService {
         .status(TradeStatus.NEW)
         .tradeTime(LocalDateTime.now())
         .build();
-        return tradeRepository.save(trade);
+        riskService.validateTrade(trade);
+        Trade savedTrade = tradeRepository.save(trade);
+        positionService.updatePosition(savedTrade);
+        return savedTrade;
     }
 }
