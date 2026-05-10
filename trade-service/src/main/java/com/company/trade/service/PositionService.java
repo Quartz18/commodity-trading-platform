@@ -1,6 +1,7 @@
 package com.company.trade.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -8,11 +9,8 @@ import org.slf4j.LoggerFactory;
 import com.company.trade.domain.Position;
 import com.company.trade.domain.Trade;
 import com.company.trade.domain.TradeSide;
-<<<<<<< Updated upstream
-=======
 import com.company.trade.dto.PnlResponse;
 import com.company.trade.exception.ResourceNotFoundException;
->>>>>>> Stashed changes
 import com.company.trade.repository.PositionRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,13 +19,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PositionService {
     private final PositionRepository positionRepository;
-<<<<<<< Updated upstream
-    public Position updatePosition(Trade trade){
-        Position position = positionRepository
-        .findByCommodity(trade.getCommodity())
-=======
     private static final Logger log =
         LoggerFactory.getLogger(TradeService.class);
+
+    public Position updatePosition(Trade trade){
 
     public Position updatePosition(Trade trade){
         Position position = getPosition(trade.getCommodity());
@@ -41,11 +36,6 @@ public class PositionService {
             handleSameDirection(position, tradeQuantity, tradePrice, newQuantity);
         }
         positionRepository.save(position);
-        log.info(
-            "Position updated for commodity={} quantity={} avgPrice={}",
-            position.getCommodity(),
-            position.getQuantity(),
-            position.getAveragePrice());
         return position;
     }
 
@@ -91,12 +81,7 @@ public class PositionService {
     private BigDecimal calculateRealizedPnl(Position position, BigDecimal tradePrice, BigDecimal closingQuantity) 
     {
         BigDecimal averagePrice = position.getAveragePrice();
-        log.debug(
-            "Calculating realized PnL: avgPrice={} tradePrice={} qty={}",
-            averagePrice,
-            tradePrice,
-            closingQuantity
-        );
+
         // LONG → SELL
         if (position.getQuantity().compareTo(BigDecimal.ZERO) > 0) {
             return tradePrice
@@ -112,25 +97,44 @@ public class PositionService {
     private Position getPosition(String commodity){
         return positionRepository
         .findByCommodity(commodity)
->>>>>>> Stashed changes
         .orElse(Position.builder()
-            .commodity(trade.getCommodity())
+            .commodity(commodity)
             .quantity(BigDecimal.ZERO)
+            .averagePrice(BigDecimal.ZERO)
+            .realizedPnl(BigDecimal.ZERO)
             .build());
-        BigDecimal quantity = trade.getQuantity();
-        if (trade.getSide() == TradeSide.BUY) {
-            position.setQuantity(position.getQuantity().add(quantity));
-        } else {
-            position.setQuantity(position.getQuantity().subtract(quantity));
+    }
+
+    private BigDecimal getTradeQuantity(BigDecimal quantity, TradeSide side){
+        if (side.equals(TradeSide.SELL)) {
+            return quantity.negate();
         }
-<<<<<<< Updated upstream
-        return positionRepository.save(position);
-=======
+        return quantity;
+    }
+    public BigDecimal calculateUnrealizedPnl(Position position, BigDecimal marketPrice) {
+
+        if (position.getQuantity().compareTo(BigDecimal.ZERO) == 0) {
+            return BigDecimal.ZERO;
+        }
+
+        BigDecimal qty = position.getQuantity().abs();
+
+        if (position.getQuantity().signum() == 1) {
+            // LONG
+            return marketPrice
+                    .subtract(position.getAveragePrice())
+                    .multiply(qty);
+        } else {
+            // SHORT
+            return position.getAveragePrice()
+                    .subtract(marketPrice)
+                    .multiply(qty);
+        }
     }
     public PnlResponse getPnl(String commodity, BigDecimal marketPrice) {
 
         Position position = positionRepository.findByCommodity(commodity)
-                .orElseThrow(() -> new ResourceNotFoundException("Position not found for commodity: "+commodity));
+                .orElseThrow(() -> new RuntimeException("Position not found"));
 
         BigDecimal unrealized = calculateUnrealizedPnl(position, marketPrice);
 
@@ -141,6 +145,5 @@ public class PositionService {
                 position.getRealizedPnl(),
                 unrealized
         );
->>>>>>> Stashed changes
     }
 }

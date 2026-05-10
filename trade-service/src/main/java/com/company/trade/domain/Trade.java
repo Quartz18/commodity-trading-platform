@@ -23,7 +23,7 @@ public class Trade {
     private TradeSide side;
 
     private BigDecimal quantity;
-
+    @Column(precision = 19, scale = 4)
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
