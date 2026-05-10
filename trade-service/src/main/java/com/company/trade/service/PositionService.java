@@ -23,8 +23,6 @@ public class PositionService {
         LoggerFactory.getLogger(TradeService.class);
 
     public Position updatePosition(Trade trade){
-
-    public Position updatePosition(Trade trade){
         Position position = getPosition(trade.getCommodity());
         BigDecimal tradeQuantity = getTradeQuantity(trade.getQuantity(),trade.getSide());
         BigDecimal tradePrice = trade.getPrice();
@@ -36,6 +34,11 @@ public class PositionService {
             handleSameDirection(position, tradeQuantity, tradePrice, newQuantity);
         }
         positionRepository.save(position);
+        log.info(
+            "Position updated for commodity={} quantity={} avgPrice={}",
+            position.getCommodity(),
+            position.getQuantity(),
+            position.getAveragePrice());
         return position;
     }
 
@@ -81,6 +84,12 @@ public class PositionService {
     private BigDecimal calculateRealizedPnl(Position position, BigDecimal tradePrice, BigDecimal closingQuantity) 
     {
         BigDecimal averagePrice = position.getAveragePrice();
+        log.debug(
+            "Calculating realized PnL: avgPrice={} tradePrice={} qty={}",
+            averagePrice,
+            tradePrice,
+            closingQuantity
+        );
 
         // LONG → SELL
         if (position.getQuantity().compareTo(BigDecimal.ZERO) > 0) {
@@ -134,7 +143,7 @@ public class PositionService {
     public PnlResponse getPnl(String commodity, BigDecimal marketPrice) {
 
         Position position = positionRepository.findByCommodity(commodity)
-                .orElseThrow(() -> new RuntimeException("Position not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Position not found for commodity: "+commodity));
 
         BigDecimal unrealized = calculateUnrealizedPnl(position, marketPrice);
 
