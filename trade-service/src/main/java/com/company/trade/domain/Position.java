@@ -2,6 +2,7 @@ package com.company.trade.domain;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,4 +28,8 @@ public class Position {
     private Long id;
     private String commodity;
     private BigDecimal quantity;
+    @Column(precision = 19, scale = 4)
+    private BigDecimal averagePrice;
+    @Column(precision = 19, scale = 4)
+    private BigDecimal realizedPnl;
 }
