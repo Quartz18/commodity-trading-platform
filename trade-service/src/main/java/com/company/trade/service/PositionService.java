@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.company.trade.domain.Position;
 import com.company.trade.domain.Trade;
 import com.company.trade.domain.TradeSide;
 import com.company.trade.dto.PnlResponse;
+import com.company.trade.exception.ResourceNotFoundException;
 import com.company.trade.repository.PositionRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PositionService {
     private final PositionRepository positionRepository;
+    private static final Logger log =
+        LoggerFactory.getLogger(TradeService.class);
+
+    public Position updatePosition(Trade trade){
 
     public Position updatePosition(Trade trade){
         Position position = getPosition(trade.getCommodity());
