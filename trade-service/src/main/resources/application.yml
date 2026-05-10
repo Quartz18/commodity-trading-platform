@@ -8,10 +8,19 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format-sql: true
   sql:
     init:
       mode: always
+logging:
+  level:
+    root: INFO
+    '[com.company.trade]': DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
