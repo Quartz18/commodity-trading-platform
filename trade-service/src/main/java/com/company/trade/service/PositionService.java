@@ -90,6 +90,7 @@ public class PositionService {
             tradePrice,
             closingQuantity
         );
+
         // LONG → SELL
         if (position.getQuantity().compareTo(BigDecimal.ZERO) > 0) {
             return tradePrice
