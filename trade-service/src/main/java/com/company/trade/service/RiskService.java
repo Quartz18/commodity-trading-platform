@@ -17,9 +17,8 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class RiskService {
 
-    @Autowired
-    private RiskLimitService riskLimitService;
-    private final PositionRepository positionRepository;;
+    private final RiskLimitService riskLimitService;
+    private final PositionRepository positionRepository;
     private static final Logger log =
         LoggerFactory.getLogger(TradeService.class);
     public void validateTrade(Trade trade) {
