@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: trade-db
+    environment:
+      POSTGRES_DB: trading_db
+      POSTGRES_USER: juser
+      POSTGRES_PASSWORD: jpassword
+    ports:
+      - "5432:5432"
+
+  trade-service:
+    build: .
+    container_name: trade-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/trading_db
+      DB_USERNAME: juser
+      DB_PASSWORD: jpassword
