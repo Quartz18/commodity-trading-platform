@@ -146,6 +146,12 @@ Sample Response
 
 ---
 
+## Docker Desktop
+
+### Running application and DB
+
+![alt text](image-3.png)
+
 ## Running Locally
 
 ### Prerequisites
