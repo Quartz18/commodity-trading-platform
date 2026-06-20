@@ -79,15 +79,15 @@ This project simulates a simplified commodity trading workflow while incorporati
 
 ### High-Level Architecture
 
-![alt text](High-Level_Architecture.jpg)
+![alt text](trade-service/High-Level_Architecture.jpg)
 
 ### Trade Processing Flow
 
-![alt text](Trade_Processing_Flow.jpg)
+![alt text](trade-service/Trade_Processing_Flow.jpg)
 
 ### Docker Deployment Architecture
 
-![alt text](Docker_Deployment_Architecture.jpg)
+![alt text](trade-service/Docker_Deployment_Architecture.jpg)
 
 ## API Endpoints
 
@@ -97,7 +97,7 @@ This project simulates a simplified commodity trading workflow while incorporati
 POST /trades
 ```
 Sample Request and Response:
-![alt text](image-1.png)
+![alt text]trade-service/image-1.png)
 ---
 
 ### Get PnL
@@ -108,7 +108,7 @@ GET /trades/pnl/{commodity}
 
 Sample Response
 
-![alt text](image-2.png)
+![alt text](trade-service/image-2.png)
 
 ---
 
@@ -231,7 +231,7 @@ GET /actuator/health
 
 Sample Response
 
-![alt text](image.png)
+![alt text](trade-service/image.png)
 
 ## Future Enhancements
 
