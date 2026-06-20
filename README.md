@@ -96,7 +96,8 @@ This project simulates a simplified commodity trading workflow while incorporati
 ```http
 POST /trades
 ```
-Sample Request and Response:
+Sample Request and Response
+
 ![alt text]trade-service/image-1.png)
 ---
 
@@ -145,6 +146,12 @@ Sample Response
 | max_position | Maximum Allowed Position |
 
 ---
+
+## Docker Desktop
+
+### Running application and DB
+
+![alt text](trade-service/image-3.png)
 
 ## Running Locally
 

@@ -96,7 +96,8 @@ This project simulates a simplified commodity trading workflow while incorporati
 ```http
 POST /trades
 ```
-Sample Request and Response:
+Sample Request and Response
+
 ![alt text](image-1.png)
 ---
 
