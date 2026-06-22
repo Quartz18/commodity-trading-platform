@@ -98,7 +98,7 @@ POST /trades
 ```
 Sample Request and Response
 
-![alt text]trade-service/image-1.png)
+![alt text](trade-service/image-1.png)
 ---
 
 ### Get PnL
