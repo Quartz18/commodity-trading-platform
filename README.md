@@ -71,8 +71,26 @@ GET /trades/pnl/{commodity}
 Sample Response
 
 ![alt text](trade-service/image-2.png)
-
 ---
+
+### Validations
+
+```http
+GET /trades/pnl/{commodity}
+```
+
+Sample Response
+
+![alt text](trade-service/image-6.png)
+
+```http
+POST /trades
+```
+Sample Request and Response
+
+![alt text](trade-service/image-7.png)
+---
+
 
 ## Database Design
 
@@ -113,6 +131,10 @@ Sample Response
 ### Running application and DB
 
 ![alt text](trade-service/image-3.png)
+
+![alt text](trade-service/image-4.png)
+
+![alt text](trade-service/image-5.png)
 
 ## Running Locally
 
