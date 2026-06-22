@@ -73,7 +73,7 @@ Sample Response
 ![alt text](trade-service/image-2.png)
 ---
 
-### Validations
+### Validations (Incorrect Commodity value and quantity value for sample)
 
 ```http
 GET /trades/pnl/{commodity}
