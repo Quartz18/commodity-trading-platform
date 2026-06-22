@@ -18,7 +18,8 @@ The project demonstrates backend engineering concepts including:
 * Unit Testing
 * Integration Testing using Testcontainers
 
-Note:- See the [Evidence of Execution Proof] (### API Endpoints & ## Docker Desktop) sections for verification.
+### Note:- For verification, see the [API Endpoints](#api-endpoints) and [Docker Desktop](#docker-desktop) sections.
+
 ---
 
 ## Business Problem
