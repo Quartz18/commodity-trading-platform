@@ -4,7 +4,7 @@
 
 A backend trading platform built using Java Spring Boot and PostgreSQL that supports trade booking, position management, risk validation, and profit & loss (PnL) calculations.
 
-The project demonstrates production-grade backend engineering concepts including:
+The project demonstrates backend engineering concepts including:
 
 * REST API development
 * Layered Architecture (Controller → Service → Repository)
@@ -18,6 +18,7 @@ The project demonstrates production-grade backend engineering concepts including
 * Unit Testing
 * Integration Testing using Testcontainers
 
+Note:- See the [Evidence of Execution Proof] (### API Endpoints & ## Docker Desktop) sections for verification.
 ---
 
 ## Business Problem
@@ -31,47 +32,6 @@ Commodity trading firms need systems capable of:
 * Providing reliable APIs for downstream systems
 
 This project simulates a simplified commodity trading workflow while incorporating production-grade backend engineering practices.
-
----
-
-## Key Features
-
-### Trade Management
-
-* Book BUY and SELL commodity trades
-* Persist trades in PostgreSQL
-* Maintain trade history
-
-### Position Management
-
-* Net positions automatically
-* Support long and short positions
-* Handle partial reductions
-* Handle position flips
-
-### Risk Management
-
-* Position limit validation
-* Database-driven risk limits
-* Risk breach prevention
-
-### PnL Engine
-
-* Average price calculation
-* Realized PnL tracking
-* Unrealized PnL calculation
-
-### Production Readiness
-
-* Global exception handling
-* Request validation
-* Structured logging
-* Health monitoring using Actuator
-
-### Testing
-
-* Unit tests for business logic
-* Integration tests using PostgreSQL Testcontainers
 
 ---
 
@@ -239,6 +199,47 @@ GET /actuator/health
 Sample Response
 
 ![alt text](trade-service/image.png)
+
+## Key Features
+
+### Trade Management
+
+* Book BUY and SELL commodity trades
+* Persist trades in PostgreSQL
+* Maintain trade history
+
+### Position Management
+
+* Net positions automatically
+* Support long and short positions
+* Handle partial reductions
+* Handle position flips
+
+### Risk Management
+
+* Position limit validation
+* Database-driven risk limits
+* Risk breach prevention
+
+### PnL Engine
+
+* Average price calculation
+* Realized PnL tracking
+* Unrealized PnL calculation
+
+### Production Readiness
+
+* Global exception handling
+* Request validation
+* Structured logging
+* Health monitoring using Actuator
+
+### Testing
+
+* Unit tests for business logic
+* Integration tests using PostgreSQL Testcontainers
+
+---
 
 ## Future Enhancements
 
